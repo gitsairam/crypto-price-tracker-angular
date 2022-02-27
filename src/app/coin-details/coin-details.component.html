@@ -1,2 +1,19 @@
-<div *ngIf="!noCoin"><p>coin-details works!</p></div>
+<div class="mainDiv" *ngIf="!noCoin"><mat-card class="example-card">
+    <mat-card-header>
+      <div mat-card-avatar class="example-header-image"></div>
+      <mat-card-title>{{responseObj.name}}</mat-card-title>
+      <mat-card-subtitle>Rank :{{responseObj.coingecko_rank}}</mat-card-subtitle>
+    </mat-card-header>
+    <img mat-card-image src={{responseObj.image?.large}} alt="Photo of a Shiba Inu" class="coin_img">
+    <mat-card-content>
+      <p>
+       {{responseObj.description?.en}}
+      </p>
+    </mat-card-content>
+    <mat-card-actions>
+      <button mat-button>LIKE</button>
+      <button mat-button>SHARE</button>
+    </mat-card-actions>
+  </mat-card>
+ </div>
 <div *ngIf="noCoin"><h1>No coin Found</h1></div>

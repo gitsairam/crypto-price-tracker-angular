@@ -11,6 +11,7 @@ import { merge } from 'rxjs';
 export class CoinDetailsComponent implements OnInit {
   coinList:string[]=JSON.parse(localStorage.getItem('coinList')!);
   noCoin:boolean=false;
+  responseObj:any={};
   constructor(private route:ActivatedRoute,private http:HttpClient) { }
 
   ngOnInit(): void {
@@ -20,6 +21,7 @@ export class CoinDetailsComponent implements OnInit {
 
         this.http.get( `https://api.coingecko.com/api/v3/coins/${result.params.id}`).subscribe((response:any)=>{
           console.log(response);
+          this.responseObj=response;
         })
       }
       else{
