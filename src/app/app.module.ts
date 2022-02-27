@@ -7,10 +7,18 @@ import {HttpClientModule} from '@angular/common/http';
 import {MatIconModule} from '@angular/material/icon';
 import {MatTableModule} from '@angular/material/table';
 import {MatPaginatorModule} from '@angular/material/paginator';
+import { CoinDetailsComponent } from './coin-details/coin-details.component';
+import { CoinListComponent } from './coin-list/coin-list.component';
+import { Route, RouterModule } from '@angular/router';
+
+const routes:Route[]=[{path:"",component:CoinListComponent},
+{path:"coin/:id",component:CoinDetailsComponent}];
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    CoinDetailsComponent,
+    CoinListComponent
   ],
   imports: [
     BrowserModule,
@@ -18,7 +26,8 @@ import {MatPaginatorModule} from '@angular/material/paginator';
     HttpClientModule,
     MatTableModule,
     MatIconModule,
-    MatPaginatorModule
+    MatPaginatorModule,
+    RouterModule.forRoot(routes)
   ],
   providers: [],
   bootstrap: [AppComponent]

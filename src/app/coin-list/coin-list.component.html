@@ -1,0 +1,24 @@
+<mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+ 
+    <ng-container matColumnDef="name">
+      <mat-header-cell *matHeaderCellDef> Name </mat-header-cell>
+      <mat-cell *matCellDef="let element"> {{element.name}}  <span><img [src]="element.image" /></span> </mat-cell>
+    </ng-container>
+  
+   
+    <ng-container matColumnDef="market_cap">
+      <mat-header-cell *matHeaderCellDef> Weight </mat-header-cell>
+      <mat-cell *matCellDef="let element"> {{element.market_cap|number}} </mat-cell>
+    </ng-container>
+  
+   
+    <ng-container matColumnDef="symbol">
+      <mat-header-cell *matHeaderCellDef> Symbol </mat-header-cell>
+      <mat-cell *matCellDef="let element"> {{element.symbol}} </mat-cell>
+    </ng-container>
+  
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: displayedColumns;" (click)="showCoin(row)"></mat-row>
+  </mat-table>
+  
+  <mat-paginator #myPaginator [length]="100" [pageSizeOptions]="[5, 10, 25, 100]" showFirstLastButtons  aria-label="Select page of users"></mat-paginator>
