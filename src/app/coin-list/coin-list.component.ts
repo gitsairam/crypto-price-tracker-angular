@@ -15,6 +15,7 @@ export class CoinListComponent implements OnInit {
   currency='INR';
 displayedColumns: string[] = [ 'name', 'market_cap', 'symbol'];
 newData:Object[]=[];
+coinList:string[]=[];
   @ViewChild("myPaginator")
   paginator!: MatPaginator;
 
@@ -28,6 +29,9 @@ this.http.get<Object[]>( `https://api.coingecko.com/api/v3/coins/markets?vs_curr
   data.map((d:any)=>{
     const {name,symbol,image,id,market_cap,...rest}=d;
     this.newData.push({name,symbol,image,id,market_cap});
+    this.coinList.push(id);
+    localStorage.setItem('coinList',JSON.stringify(this.coinList));
+
   })
   //console.log(this.newData);
   this.dataSource=new MatTableDataSource(this.newData);

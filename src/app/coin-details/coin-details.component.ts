@@ -9,14 +9,24 @@ import { merge } from 'rxjs';
   styleUrls: ['./coin-details.component.css']
 })
 export class CoinDetailsComponent implements OnInit {
-
+  coinList:string[]=JSON.parse(localStorage.getItem('coinList')!);
+  noCoin:boolean=false;
   constructor(private route:ActivatedRoute,private http:HttpClient) { }
 
   ngOnInit(): void {
+ 
     this.route.paramMap.subscribe((result:any)=>{
-      this.http.get( `https://api.coingecko.com/api/v3/coins/${result.params.id}`).subscribe((response:any)=>{
-              console.log(response);
-            })
+      if(this.coinList && this.coinList.includes(result.params.id)){
+
+        this.http.get( `https://api.coingecko.com/api/v3/coins/${result.params.id}`).subscribe((response:any)=>{
+          console.log(response);
+        })
+      }
+      else{
+        this.noCoin=true;
+
+      }
+
     })
     }
 
