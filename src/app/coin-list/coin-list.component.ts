@@ -16,6 +16,8 @@ export class CoinListComponent implements OnInit {
 displayedColumns: string[] = [ 'name', 'market_cap', 'symbol'];
 newData:Object[]=[];
 coinList:string[]=[];
+filterInput:string='';
+filteredList:Object[]=[];;
   @ViewChild("myPaginator")
   paginator!: MatPaginator;
 
@@ -36,22 +38,32 @@ this.http.get<Object[]>( `https://api.coingecko.com/api/v3/coins/markets?vs_curr
   //console.log(this.newData);
   this.dataSource=new MatTableDataSource(this.newData);
    this.dataSource.paginator = this.paginator;
+   this.dataSource.filterPredicate = (data: {name:string,symbol:string,image:string,id:string,market_cap:number}, filter: string) => {
+    return data.symbol == filter;
+   };
 
 })
     
   }
 
   showCoin(row:any){
-  //   console.log(row);
-  //   this.http.get( `https://api.coingecko.com/api/v3/coins/${row.id}`).subscribe((response:any)=>{
-  //     console.log(response);
-  //   })
-  // }
+ 
   this.router.navigate(['coin',row.id]);
+
+  }
+
+applyFilter(event:KeyboardEvent){
+ let value=((event.target!) as HTMLInputElement).value; 
+
+this.dataSource.filter=value;
+
+}
+  
+  
 
   }
 
   
 
 
-}
+

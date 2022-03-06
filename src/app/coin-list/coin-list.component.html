@@ -1,3 +1,9 @@
+<mat-form-field class="example-form-field" appearance="fill" [style.width.%]="100">
+
+  <input matInput type="text" (keyup)="applyFilter($event)" placeholder="Filter By Symbol">
+</mat-form-field>
+
+
 <mat-table [dataSource]="dataSource" class="mat-elevation-z8">
  
     <ng-container matColumnDef="name">
@@ -21,4 +27,4 @@
     <mat-row *matRowDef="let row; columns: displayedColumns;" (click)="showCoin(row)"></mat-row>
   </mat-table>
   
-  <mat-paginator #myPaginator [length]="100" [pageSizeOptions]="[5, 10, 25, 100]" showFirstLastButtons  aria-label="Select page of users"></mat-paginator>
+  <mat-paginator #myPaginator [length]="newData.length" [pageSizeOptions]="[5, 10, 25]" showFirstLastButtons  aria-label="Select page of users"></mat-paginator>
