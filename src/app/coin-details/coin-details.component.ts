@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, SecurityContext } from '@angular/core';
+import { DomSanitizer } from '@angular/platform-browser';
 import { ActivatedRoute } from '@angular/router';
 import { merge } from 'rxjs';
 
@@ -12,7 +13,8 @@ export class CoinDetailsComponent implements OnInit {
   coinList:string[]=JSON.parse(localStorage.getItem('coinList')!);
   noCoin:boolean=false;
   responseObj:any={};
-  constructor(private route:ActivatedRoute,private http:HttpClient) { }
+  aboutCoin:any;
+  constructor(private route:ActivatedRoute,private http:HttpClient,private domSanitizer:DomSanitizer) { }
 
   ngOnInit(): void {
  
@@ -22,6 +24,7 @@ export class CoinDetailsComponent implements OnInit {
         this.http.get( `https://api.coingecko.com/api/v3/coins/${result.params.id}`).subscribe((response:any)=>{
           console.log(response);
           this.responseObj=response;
+         this.aboutCoin= this.domSanitizer.sanitize(SecurityContext.HTML,this.responseObj.description.en);
         })
       }
       else{

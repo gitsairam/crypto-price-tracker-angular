@@ -13,7 +13,7 @@ export class CoinListComponent implements OnInit {
   dataSource!: MatTableDataSource<any>;
   title = 'cryptopricetracker';
   currency='INR';
-displayedColumns: string[] = [ 'name', 'market_cap', 'symbol'];
+displayedColumns: string[] = [ 'name','icon', 'market_cap', 'symbol'];
 newData:Object[]=[];
 coinList:string[]=[];
 filterInput:string='';
@@ -39,7 +39,8 @@ this.http.get<Object[]>( `https://api.coingecko.com/api/v3/coins/markets?vs_curr
   this.dataSource=new MatTableDataSource(this.newData);
    this.dataSource.paginator = this.paginator;
    this.dataSource.filterPredicate = (data: {name:string,symbol:string,image:string,id:string,market_cap:number}, filter: string) => {
-    return data.symbol == filter;
+     console.log(data.name);
+    return data.name.toLowerCase()==filter;
    };
 
 })

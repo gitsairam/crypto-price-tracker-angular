@@ -8,7 +8,12 @@
  
     <ng-container matColumnDef="name">
       <mat-header-cell *matHeaderCellDef> Name </mat-header-cell>
-      <mat-cell *matCellDef="let element"> {{element.name}}  <span><img [src]="element.image" /></span> </mat-cell>
+      <mat-cell *matCellDef="let element"> {{element.name}} </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="icon">
+      <mat-header-cell *matHeaderCellDef> Icon </mat-header-cell>
+      <mat-cell *matCellDef="let element"><img [src]="element.image" /> </mat-cell>
     </ng-container>
   
    
