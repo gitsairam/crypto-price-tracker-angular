@@ -1,11 +1,14 @@
 .mainDiv{
     display:flex;
-    justify-content:center;
-    align-items: center;
+    justify-content:left;
+    align-items: left;
 }
 
 .example-card {
     max-width: 400px;
+    max-height:400px;
+    overflow-y:scroll;
+    margin-top: 5%;
   }
 
 .coin-img{
@@ -13,9 +16,3 @@
 }
 
  
-  
-  .example-header-image {
-    background-image: url('https://material.angular.io/assets/img/examples/shiba1.jpg');
-    background-size: cover;
-  }
-  

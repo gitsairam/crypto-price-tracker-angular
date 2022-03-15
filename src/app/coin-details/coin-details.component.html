@@ -1,14 +1,24 @@
-<div class="mainDiv" *ngIf="!noCoin"><mat-card class="example-card">
-    <mat-card-header>
-      <div mat-card-avatar class="example-header-image"></div>
+<mat-toolbar>
+  <span>Coin Info Page</span>
+</mat-toolbar>
+
+
+<div class="mainDiv" *ngIf="!noCoin">
+  
+  
+  <mat-card class="example-card">
+
+    <mat-card-title-group>
+     
       <mat-card-title>{{responseObj.name}}</mat-card-title>
       <mat-card-subtitle>Rank :{{responseObj.coingecko_rank}}</mat-card-subtitle>
-    </mat-card-header>
-    <img mat-card-image src={{responseObj.image?.large}} alt="Photo of a Shiba Inu" class="coin_img">
+      <img mat-card-md-image src={{responseObj.image?.large}} alt="Photo of a Shiba Inu" class="coin_img">
+    </mat-card-title-group>
+    
     <mat-card-content>
-      <p>
-       {{aboutCoin}}
-      </p>
+      <div [innerHTML]="aboutCoin">
+   
+      </div>
     </mat-card-content>
    
   </mat-card>
